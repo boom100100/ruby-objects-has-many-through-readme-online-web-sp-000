@@ -27,7 +27,7 @@ class Waiter
       end
     }
 
-    best_tipped_meal = Meal.all.select {|meal|
+    best_tipped_meal = Meal.all.find {|meal|
       meal.tip == best_tip
     }
 
