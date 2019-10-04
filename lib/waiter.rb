@@ -20,13 +20,18 @@ class Waiter
   end
 
   def best_tipper
-    meal = Meal.all.max {|meal|
-      meal.tip
+    best_tip = 0
+    Meal.all.each {|meal|
+      if (meal.tip > best_tip)
+        best_tip = meal.tip
+      end
     }
-    puts "The best tip is $#{meal.tip}."
-    puts "The best tipper is #{meal.customer.name}."
+
     best_tipped_meal = Meal.all.select {|meal|
+      meal.tip == best_tip
     }
+
+    best_tipped_meal.customer
 
 
   end
